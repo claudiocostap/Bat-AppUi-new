@@ -1,0 +1,26 @@
+
+
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Demonstrativo do Investimento</h1>
+    </div>
+
+    <div class="ui-g-12 ui-md-6">
+      <p-panel header="Vendas por marcas">
+        <p-chart type="pie" [data]="pieChartData"></p-chart>
+      </p-panel>
+    </div>
+
+    <div class="ui-g-12 ui-md-6">
+      <p-panel header="Vendas por dia">
+        <p-chart type="line" [data]="lineChartData"></p-chart>
+      </p-panel>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <p-panel header="Vendas por mês">
+        <p-chart type="bar" [data]="barChartData"></p-chart>
+      </p-panel>
+    </div>
+  </div>
+</div>

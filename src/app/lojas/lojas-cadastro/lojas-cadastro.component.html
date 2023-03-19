@@ -1,0 +1,59 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Nova Loja</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome"
+          [(ngModel)]="loja.nome"
+          #nome="ngModel" required minlength="5">
+
+        <app-message [control]="nome" error="required"
+          text="Informe o nome"></app-message>
+        <app-message [control]="nome" error="minlength"
+          text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>CNPJ</label>
+        <p-inputMask name="cnpj" mask="99.999.999/9999-99"
+          [(ngModel)]="loja.cnpj"
+          #cnpj="ngModel" required></p-inputMask>
+
+        <app-message [control]="cnpj" error="required"
+          text="Informe o CNPJ"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Razão Social</label>
+        <input pInputText type="text" name="razaoSocial"
+        [(ngModel)]="loja.razaoSocial">
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Telefone</label>
+        <p-inputMask name="fone1" mask="(99)9999-9999"
+          [(ngModel)]="loja.fone1"
+          #fone1="ngModel" required></p-inputMask>
+
+        <app-message [control]="fone1" error="required"
+          text="Informe o Telefone"></app-message>
+      </div>
+
+     
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info"
+          (click)="nova(f)"></button>
+
+        <a routerLink="/lojas">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,37 @@
+<nav class="navbar">
+
+  <div class="container">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <a href="javascript:;" class="navbar-toggle" (click)="ocultar()"><i
+            class="fa fa-bars"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
+    <li class="navbar-usuario">{{ auth.jwtPayload?.nome }}</li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_LOJA')">
+      <a routerLink="/dashboard" (click)="ocultar()">Dashboard</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_LOJA')">
+      <a routerLink="/lojas" (click)="ocultar()">Lojas</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')">
+      <a routerLink="/baterias" (click)="ocultar()">Baterias</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')"><a
+        routerLink="/lancamentos" (click)="ocultar()">Lançamentos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')"><a
+        routerLink="/pessoas" (click)="ocultar()">Pessoas</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')"><a
+        routerLink="/investimentos" (click)="ocultar()">Investimentos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_CATEGORIA')"><a
+        routerLink="/categorias" (click)="ocultar()">Categorias</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_CATEGORIA')">
+
+    </li>
+
+    <li class="navbar-menuitem"><button pButton type="button" (click)="logout()" label="Sair"
+        class="button-logout"></button></li>
+  </ul>
+
+</nav>

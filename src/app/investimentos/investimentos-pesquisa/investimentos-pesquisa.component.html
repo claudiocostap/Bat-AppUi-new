@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Meus Investimentos</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="investimentos" [responsive]="true" emptyMessage="Nenhum ivestimento encontrado"
+        [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
+        (onLazyLoad)="aoMudarPagina($event)" #tabela>
+
+        <p-column header="Nome" styleClass="col-data">
+          <ng-template let-invest="rowData" pTemplate="body">
+            <span>{{ invest.loja.nome }}</span>
+          </ng-template>
+        </p-column>
+
+
+        <p-column header="CNPJ" styleClass="col-data">
+          <ng-template let-invest="rowData" pTemplate="body">
+            <span>{{ invest.loja.cnpj }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column header="Cidade" styleClass="col-data">
+          <ng-template let-invest="rowData" pTemplate="body">
+            <span>{{ invest.loja.endereco.cidade }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column header="Valor" styleClass="col-valor">
+          <ng-template let-invest="rowData" pTemplate="body">
+            <span>{{ invest.valor | number:'1.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column styleClass="col-acoes">
+          <ng-template let-invest="rowData" pTemplate="body">
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+              [routerLink]="['/investimentos', invest.codigo]"></a>
+            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(invest)"
+              [disabled]="!auth.temPermissao('ROLE_REMOVER_INVESTIMENTO')"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12" *ngIf="show">
+      <a pButton label="Novo investimento" routerLink="/investimento/nova"></a>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container" *ngIf="show">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">1 Franquia</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">$35000,00</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Juros fixos a 3%</li>
+          <li>pagamentos todo dia 10</li>
+          <li>Acesso ao portal do investidor</li>
+        </ul>
+        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Ver documentação</button>
+      </div>
+    </div>
+  </div>
+</div>
