@@ -6,7 +6,6 @@ export class Endereco {
   cep: string;
   cidade: string;
   estado: string;
-
 }
 
 export class Pessoa {
@@ -35,7 +34,7 @@ export class Categoria {
 
 export class Lancamento {
   codigo: number;
-  tipo = 'RECEITA';
+  tipo = "RECEITA";
   descricao: string;
   dataVencimento: Date;
   dataPagamento: Date;
@@ -59,7 +58,6 @@ export class Bateria {
   v_total: number;
 }
 
-
 export class Investimento {
   codigo: number;
   descricao: string;
@@ -70,3 +68,11 @@ export class Investimento {
   valor: number;
 }
 
+export class Produto {
+  codigo: number;
+  nome: string;
+  marca: string;
+  valor: number;
+  quantidade: number;
+  categoria = new Categoria();
+}

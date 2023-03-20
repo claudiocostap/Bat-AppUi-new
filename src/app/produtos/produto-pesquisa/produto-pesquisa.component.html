@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Produtos</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="produtos" [responsive]="true"
+        emptyMessage="Nenhuma produto encontrado"
+        [paginator]="true" [rows]="filtro.itensPorPagina"
+        [lazy]="true" [totalRecords]="totalRegistros"
+        (onLazyLoad)="aoMudarPagina($event)"
+        #tabela>
+          <p-column field="nome" header="Nome"></p-column>
+          <p-column field="descricao" header="Descrição"></p-column>
+          <p-column field="peso" header="Peso"></p-column>
+          <p-column field="quantidade" header="Quantidade">
+          </p-column>
+          <p-column styleClass="col-acoes">
+            <ng-template let-prd="rowData" pTemplate="body">
+              <a pButton icon="fa-pencil"
+                pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/Produtos', prd.codigo]"></a>
+              <button pButton icon="fa-trash"
+                pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(prd)"></button>
+            </ng-template>
+          </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Novo produto" routerLink="/produtos/novo"></a>
+    </div>
+  </div>
+
+</div>

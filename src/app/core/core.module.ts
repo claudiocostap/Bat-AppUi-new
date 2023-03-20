@@ -1,3 +1,4 @@
+import { ProdutoService } from './../produtos/produto.service';
 import { InvestimentosService } from './../investimentos/investimentos.service';
 import { DashboardService } from './../dashboard/dashboard.service';
 import { LojasService } from './../lojas/lojas.service';
@@ -47,6 +48,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     CategoriaService,
     BateriaService,
     LojasService,
+    ProdutoService,
     DashboardService,
     InvestimentosService,
     ErrorHandlerService,
