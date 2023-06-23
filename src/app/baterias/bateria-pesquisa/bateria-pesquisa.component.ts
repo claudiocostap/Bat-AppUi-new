@@ -31,15 +31,31 @@ export class BateriaPesquisaComponent implements OnInit {
     this.title.setTitle('Pesquisa de baterias');
   }
 
+  pesquisarNome(pagina = 0) {
+    if (!this.filtro.nome) {
+      this.pesquisar();
+    } else {
+      this.filtro.pagina = pagina;
+
+      this.bateriaService
+        .pesquisarNome(this.filtro)
+        .then((resultado) => {
+          this.totalRegistros = resultado.total;
+          this.baterias = resultado.baterias;
+        })
+        .catch((erro) => this.errorHandler.handle(erro));
+    }
+  }
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
 
-    this.bateriaService.pesquisar(this.filtro)
-      .then(resultado => {
+    this.bateriaService
+      .pesquisar(this.filtro)
+      .then((resultado) => {
         this.totalRegistros = resultado.total;
         this.baterias = resultado.baterias;
       })
-      .catch(erro => this.errorHandler.handle(erro));
+      .catch((erro) => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

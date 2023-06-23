@@ -47,6 +47,31 @@ export class BateriaService {
       })
   }
 
+  pesquisarNome(filtro: BateriaFiltro): Promise<any> {
+    const params = new URLSearchParams();
+
+    params.set('page', filtro.pagina.toString());
+    params.set('size', filtro.itensPorPagina.toString());
+
+    if (filtro.nome) {
+      params.set('nome', filtro.nome);
+    }
+
+    return this.http.get(`${this.bateriasUrl}/pesquisar`, { search: params })
+      .toPromise()
+      .then(response => {
+        const responseJson = response.json();
+        const baterias = responseJson.content;
+
+        const resultado = {
+          baterias,
+          total: responseJson.totalElements
+        };
+
+        return resultado;
+      })
+  }
+
   listarTodas(): Promise<any> {
     return this.http.get(this.bateriasUrl)
       .toPromise()
