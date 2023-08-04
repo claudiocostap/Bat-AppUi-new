@@ -30,7 +30,7 @@ export class PessoaCadastroComponent implements OnInit {
   ngOnInit() {
     const codigoPessoa = this.route.snapshot.params['codigo'];
 
-    this.title.setTitle('Nova pessoa');
+    this.title.setTitle('Novo cliente');
 
     if (codigoPessoa) {
       this.carregarPessoa(codigoPessoa);
@@ -61,7 +61,7 @@ export class PessoaCadastroComponent implements OnInit {
   adicionarPessoa(form: FormControl) {
     this.pessoaService.adicionar(this.pessoa)
       .then(pessoaAdicionada => {
-        this.toasty.success('Pessoa adicionada com sucesso!');
+        this.toasty.success('Cliente adicionado com sucesso!');
         this.router.navigate(['/pessoas', pessoaAdicionada.codigo]);
       })
       .catch(erro => this.errorHandler.handle(erro));
@@ -72,7 +72,7 @@ export class PessoaCadastroComponent implements OnInit {
       .then(pessoa => {
         this.pessoa = pessoa;
 
-        this.toasty.success('Pessoa alterada com sucesso!');
+        this.toasty.success('Cliente alterado com sucesso!');
         this.atualizarTituloEdicao();
       })
       .catch(erro => this.errorHandler.handle(erro));
@@ -89,7 +89,7 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   atualizarTituloEdicao() {
-    this.title.setTitle(`Edição de pessoa: ${this.pessoa.nome}`);
+    this.title.setTitle(`Edição de clientes: ${this.pessoa.nome}`);
   }
 
 }

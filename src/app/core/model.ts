@@ -12,6 +12,10 @@ export class Pessoa {
   codigo: number;
   nome: string;
   cargo: string;
+  cpf: string;
+  rg: string;
+  foneContato: string;
+  dataNascimento: Date;
   endereco = new Endereco();
   ativo = true;
 }

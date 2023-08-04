@@ -12,6 +12,7 @@ import { SharedModule } from './../shared/shared.module';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasRoutingModule } from './pessoas-routing.module';
+import { CalendarModule } from 'primeng/components/calendar/calendar';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     DataTableModule,
     TooltipModule,
     InputMaskModule,
+    CalendarModule,
 
     SharedModule,
     PessoasRoutingModule

@@ -18,6 +18,49 @@
           text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
 
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>CPF</label>
+        <input pInputText type="number" name="cpf"
+          [(ngModel)]="pessoa.cpf"
+          #numero="ngModel" required>
+
+        <app-message [control]="cpf" error="required"
+          text="Informe o número do CPF"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>RG</label>
+        <input pInputText type="number" name="rg"
+          [(ngModel)]="pessoa.rg"
+          #numero="ngModel" required>
+
+        <app-message [control]="rg" error="required"
+          text="Informe o número do RG"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Número telefone</label>
+        <input pInputText type="number" name="foneContato"
+          [(ngModel)]="pessoa.foneContato"
+          #numero="ngModel" required>
+
+        <app-message [control]="foneContato" error="required"
+          text="Informe o número de telefone"></app-message>
+      </div>
+      
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Data de nascimento</label>
+        
+      <p-calendar [(ngModel)]="date" dateFormat="dd/mm/yy"
+          [inline]="false" [readonlyInput]="false" [showIcon]="false"
+          [(ngModel)]="pessoa.dataNascimento"
+          #dataNascimento="ngModel" required></p-calendar>
+
+        <app-message [control]="dataNascimento" error="required"
+          text="Informe uma data de nascimento"></app-message>
+      </div>
+
+
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Logradouro</label>
         <input pInputText type="text" name="logradouro"
